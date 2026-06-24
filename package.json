@@ -1,0 +1,33 @@
+{
+  "name": "pi-env-guard",
+  "version": "1.0.0",
+  "description": "Environment variable validation, secret leak detection, and drift analysis for pi.dev projects",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZachDreamZ/pi-env-guard.git"
+  },
+  "type": "module",
+  "main": "extensions/index.ts",
+  "pi": {
+    "extensions": ["./extensions"],
+    "skills": ["./skills"],
+    "prompts": []
+  },
+  "peerDependencies": {
+    "@mariozechner/pi-coding-agent": ">=0.73.0"
+  },
+  "devDependencies": {
+    "@mariozechner/pi-coding-agent": "^0.73.0",
+    "typescript": "^5.4.0",
+    "@biomejs/biome": "^1.7.0",
+    "vitest": "^2.0.0"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "test": "vitest run"
+  },
+  "keywords": ["pi", "env", "validation", "security", "secrets"],
+  "author": "ZachDreamZ",
+  "license": "MIT"
+}
