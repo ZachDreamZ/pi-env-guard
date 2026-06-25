@@ -1,39 +1,64 @@
 # pi-env-guard
 
-Environment variable validation, secret leak detection, and drift analysis for pi.dev projects.
-
-## Features
-
-- **env_validate** — Validate `.env` against `.env.example` for missing/extra/placeholder values
-- **env_leak_detect** — Scan project files for accidentally committed secrets, API keys, and tokens
-- **env_drift** — Detect drift between `.env` and `.env.example` (added/removed/modified variables)
-
-## Usage
-
-### Tools
-
-```typescript
-// Validate your .env file
-await pi.tools.env_validate({});
-
-// Scan for secret leaks
-await pi.tools.env_leak_detect({ directory: "./src" });
-
-// Check for environment drift
-await pi.tools.env_drift({});
-```
-
-### Commands
-
-```
-/env-check    # Run all checks and display a report
-```
+> Validate .env files, detect secret leaks, and check for environment drift in your Pi projects.
 
 ## Installation
 
 ```bash
-npm install pi-env-guard
+pi install npm:pi-env-guard
 ```
+
+## What It Does
+
+Every developer uses `.env` files, but they're easy to mess up — missing variables, accidentally committed secrets, and `.env.example` files that drift out of sync. `pi-env-guard` adds three tools to Pi that catch these issues before they become problems.
+
+## Tools
+
+### `env_validate`
+Validates your `.env` file against `.env.example` to find missing, extra, or misconfigured variables.
+
+**Parameters:**
+- `env_path` (string, optional) — Path to .env file (default: `.env`)
+- `example_path` (string, optional) — Path to .env.example (default: `.env.example`)
+
+**Example:**
+```
+Use the env_validate tool to check my environment configuration
+```
+
+### `env_leak_detect`
+Scans files for accidentally committed secrets like API keys, tokens, and passwords.
+
+**Parameters:**
+- `path` (string, optional) — Directory or file to scan (default: current directory)
+- `patterns` (string[], optional) — Additional regex patterns to detect
+
+**Example:**
+```
+Use the env_leak_detect tool to scan for secrets in my project
+```
+
+### `env_drift`
+Compares environment variables across `.env`, `.env.example`, and code references to detect drift.
+
+**Parameters:**
+- `root_dir` (string, optional) — Project root directory (default: current directory)
+
+**Example:**
+```
+Use the env_drift tool to check if my .env.example is up to date
+```
+
+## Commands
+
+### `/env-check`
+Runs all three validations in one shot — validate, leak detection, and drift check. Gives you a complete environment health report.
+
+## Resources
+
+- [npm](https://www.npmjs.com/package/pi-env-guard)
+- [GitHub](https://github.com/ZachDreamZ/pi-env-guard)
+- [pi.dev](https://pi.dev/packages/pi-env-guard)
 
 ## License
 
